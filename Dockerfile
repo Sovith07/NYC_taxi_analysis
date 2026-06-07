@@ -20,4 +20,4 @@ RUN pip install -r dev-requirements.txt
 # RUN aws s3 cp s3://creditcard-project/models/model.joblib /app/models/model.joblib
 
 # Run app.py when the container launches
-CMD ["python", "service.py"]
+CMD ["python", "service_uvicorn.py"]
