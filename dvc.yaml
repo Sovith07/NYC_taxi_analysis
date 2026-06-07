@@ -5,33 +5,37 @@ stages:
   - .\src\data\make_dataset.py 
   - .\data\raw\data1.csv 
   - .\data\raw\data2.csv
-  outs:
-  - .\data\processed\
+  
 
  build_features:
   cmd: python .\src\features\build_features.py .\data\processed\
   deps:
   - .\src\features\build_features.py 
   - .\data\processed\
-  outs:
-  - .\data\preprocessed\
+
 
  train_model:
    cmd: python .\src\models\train_model.py .\data\preprocessed\
    deps:
    - .\src\models\train_model.py 
    - .\data\preprocessed\
-   outs:
-   - .\models\
+   
 
- visualize:
-   cmd: python .\src\visualization\visualize.py .\models\model.joblib .\data\preprocessed\
+ push_model:
+   cmd: python .\src\models\push_model.py 
    deps:
-   - .\src\visualization\visualize.py 
-   - .\models\model.joblib 
-   - .\data\preprocessed\
-   outs:
-   - dvclive
+   - .\src\models\train_model.py 
+   
+
+# visualize:
+#   cmd: python .\src\visualization\visualize.py .\models\model.joblib .\data\preprocessed\
+#   deps:
+#   - .\src\visualization\visualize.py 
+#   - .\models\model.joblib 
+#   - .\data\preprocessed\
+
+
+   
 
 metrics:
 - dvclive\metrics.json

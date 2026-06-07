@@ -88,11 +88,25 @@ def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
     # ── Target transform ───────────────────────────────────────────
     df["log_trip_duration"] = np.log1p(df["trip_duration"])
 
+    df = df.drop(
+    columns=[
+        'id',
+        'pickup_datetime',
+        'dropoff_datetime',
+    ])
+
+    df['store_and_fwd_flag'] = df['store_and_fwd_flag'].map({
+    'N': 0,
+    'Y': 1
+})  
+
     new_cols = [
         "pickup_hour", "pickup_dayofweek", "pickup_month", "pickup_weekofyear",
         "is_weekend", "is_night", "is_rush_hour", "log_trip_duration"]
     
     print("New columns:", ", ".join(new_cols))
+
+
 
     return df
 
