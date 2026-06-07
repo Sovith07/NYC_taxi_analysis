@@ -16,68 +16,51 @@ stages:
       hash: md5
       md5: 4c8159885e6d48297c08f13a8ee74b6d
       size: 1445
-    outs:
-    - path: .\data\processed\
-      hash: md5
-      md5: 7a51a40bfe9c1744aef466594b667ccf.dir
-      size: 270429409
-      nfiles: 2
   build_features:
     cmd: python .\src\features\build_features.py .\data\processed\
     deps:
     - path: .\data\processed\
       hash: md5
-      md5: 7a51a40bfe9c1744aef466594b667ccf.dir
+      md5: 8c1c64d285e786f88761d0b8e1466201.dir
       size: 270429409
       nfiles: 2
     - path: .\src\features\build_features.py
       hash: md5
-      md5: ee135454a906aaf04a61c47788611cd8
-      size: 10205
-    outs:
-    - path: .\data\preprocessed\
-      hash: md5
-      md5: 78ce7a3a0b022614fb249ee93e9503fd.dir
-      size: 232240649
-      nfiles: 2
+      md5: f80ee125c959eabeacde444d21bbcef1
+      size: 10421
   train_model:
     cmd: python .\src\models\train_model.py .\data\preprocessed\
     deps:
     - path: .\data\preprocessed\
       hash: md5
-      md5: 78ce7a3a0b022614fb249ee93e9503fd.dir
-      size: 232240649
+      md5: 0ef6ac8b511e88ac8fac0f224a63fc7a.dir
+      size: 164080789
       nfiles: 2
     - path: .\src\models\train_model.py
       hash: md5
-      md5: 8d79c8ae017d220d16bf66e5afc0846b
-      size: 1655
-    outs:
-    - path: .\models\
-      hash: md5
-      md5: b1a386df563c52731e7afc997035fbdb.dir
-      size: 96353
-      nfiles: 1
+      md5: 64b7b74e1021faaa210c246a44ca7abe
+      size: 3427
   visualize:
     cmd: python .\src\visualization\visualize.py .\models\model.joblib 
       .\data\preprocessed\
     deps:
     - path: .\data\preprocessed\
       hash: md5
-      md5: 78ce7a3a0b022614fb249ee93e9503fd.dir
-      size: 232240649
+      md5: 599d0aaa9952a35fa90fb60bdf2e77b9.dir
+      size: 232257911
       nfiles: 2
     - path: .\models\model.joblib
       hash: md5
-      md5: 14ea4f8ba8aaf292caf7109b0719a339
-      size: 96353
+      md5: 463e496c0133aa4d30dbd8bd7b7aa4f8
+      size: 1670449
     - path: .\src\visualization\visualize.py
       hash: md5
       md5: 960b8352fbfb39213c65a0ae7d7da739
       size: 3464
-    outs:
-    - path: dvclive
+  push_model:
+    cmd: python .\src\models\push_model.py
+    deps:
+    - path: .\src\models\train_model.py
       hash: md5
-      md5: 013716f0d8b1b845ac14118977c46a54.dir
-      size: 218226
-      nfiles: 4
+      md5: 64b7b74e1021faaa210c246a44ca7abe
+      size: 3427
