@@ -3,7 +3,7 @@ NYC-Taxi-Fare Analysis
 
 
 
-Project Organization
+Project Organization In Detail
 ------------
 
     ├── LICENSE
