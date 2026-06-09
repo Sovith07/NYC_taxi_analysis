@@ -90,6 +90,9 @@ def run_eda(df: pd.DataFrame, save_prefix: str = "eda") :
             alpha=0.25, s=2
         )
         plt.colorbar(sc, ax=ax, label="log(duration)")
+        # NYC bounding box
+        NYC_LON = (-74.05, -73.75)
+        NYC_LAT = (40.63,  40.85)
         ax.set_xlim(*NYC_LON)
         ax.set_ylim(*NYC_LAT)
         ax.set_title(title)

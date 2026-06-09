@@ -13,10 +13,10 @@ stages:
   - .\src\features\build_features.py 
   - .\data\processed\
 
- plot-graphs:
-   cmd: python .\src\models\plot_graphs.py .\data\preprocessed\
+ plot_graphs:
+   cmd: python .\src\features\plot_graphs.py .\data\preprocessed\
    deps:
-   - .\src\models\plot_graphs.py 
+   - .\src\features\plot_graphs.py 
    - .\data\preprocessed\
 
  train_model:

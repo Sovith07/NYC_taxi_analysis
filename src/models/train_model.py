@@ -59,11 +59,6 @@ def find_best_model_with_params(x_train,y_train,x_test,y_test):
         model.fit(x_train,y_train)
         mlflow.sklearn.log_model(model,'model')
 
-        #register to Model Registry
-        model_uri = f"runs:/{run_id}/model"
-        mlflow.register_model(model_uri, "nyc-taxi-fare-predictor")
-        print(f"Model registered with run_id: {run_id}")
-
 
     return model
 
@@ -94,8 +89,6 @@ def main():
         'log_trip_duration'])
     y_test =test_features['log_trip_duration']
 
-    mlflow.set_tracking_uri("http://localhost:5000")
-    mlflow.set_experiment("nyc-taxi-experiment")
 
     trained_model=find_best_model_with_params(x_train,y_train,x_test,y_test)
     save_model(trained_model,output_path)

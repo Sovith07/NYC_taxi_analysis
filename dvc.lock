@@ -26,8 +26,8 @@ stages:
       nfiles: 2
     - path: .\src\features\build_features.py
       hash: md5
-      md5: f80ee125c959eabeacde444d21bbcef1
-      size: 10421
+      md5: a422ce1e57b6b1ea2c551ec0383743f7
+      size: 4936
   train_model:
     cmd: python .\src\models\train_model.py .\data\preprocessed\
     deps:
@@ -38,8 +38,8 @@ stages:
       nfiles: 2
     - path: .\src\models\train_model.py
       hash: md5
-      md5: 64b7b74e1021faaa210c246a44ca7abe
-      size: 3427
+      md5: 95790bac45fbdd09f5e895333502309e
+      size: 3214
   visualize:
     cmd: python .\src\visualization\visualize.py .\models\model.joblib 
       .\data\preprocessed\
@@ -62,5 +62,17 @@ stages:
     deps:
     - path: .\src\models\train_model.py
       hash: md5
-      md5: 64b7b74e1021faaa210c246a44ca7abe
-      size: 3427
+      md5: 95790bac45fbdd09f5e895333502309e
+      size: 3214
+  plot_graphs:
+    cmd: python .\src\features\plot_graphs.py .\data\preprocessed\
+    deps:
+    - path: .\data\preprocessed\
+      hash: md5
+      md5: 0ef6ac8b511e88ac8fac0f224a63fc7a.dir
+      size: 164080789
+      nfiles: 2
+    - path: .\src\features\plot_graphs.py
+      hash: md5
+      md5: a78286c1a14d981612f3d8789d6b7e29
+      size: 6006
