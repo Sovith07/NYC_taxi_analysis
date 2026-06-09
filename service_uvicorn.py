@@ -40,9 +40,6 @@ def predict(input_data: PredictionInput):
     }
     features=pd.DataFrame(features,index=[0])
     features=engineer_features(features)
-    features=features['store_and_fwd_flag'].map({
-    'N': 0,
-    'Y': 1})
     
     prediction = model.predict([features])[0].item()
     return {"prediction": prediction}

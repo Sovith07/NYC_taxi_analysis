@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Copy the required files and directory into the container at /app
 COPY service_uvicorn.py /app/service_uvicorn.py
-COPY model.joblib /app/model.joblib
+COPY models/model.joblib /app/model.joblib
 COPY src/ /app/src/
 COPY dev-requirements.txt /app/dev-requirements.txt
 
